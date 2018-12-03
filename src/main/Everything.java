@@ -1,10 +1,11 @@
 package main;
 
-import gen.Menu;
+import java.io.IOException;
+
+import gen.SettingsAndStats;
 import gen.Setup;
 import main.entities.Enemy;
 import main.entities.Player;
-import main.items.*;
 
 	/*
 	 * 
@@ -17,7 +18,7 @@ import main.items.*;
 	 *
 	 */
 
-public class Everything /*extends JFrame implements ActionListener*/ {
+public class Everything {
 	
 	public static Player player;
 	static Enemy enemy;
@@ -34,15 +35,19 @@ public class Everything /*extends JFrame implements ActionListener*/ {
 		return position;
 	}
 
-	public static void main(String[] args) {
-		hallLength = Setup.Flip(10) + 10; //Minimum hall length = 11, max 20, at end = stairs
-		floorNumber = Setup.Flip(3) + 2; //Minimum length 3,  max 5
+	public static void main(String[] args) throws IOException {
 		
-		player = Setup.runIntro();
+		hallLength = Setup.Flip(10) + 10; 	//Minimum hall length = 11, max 20, at end = stairs
+		floorNumber = Setup.Flip(3) + 2; 	//Minimum length 3,  max 5
+		
+		SettingsAndStats read = new SettingsAndStats();
+		read.readSettings();
+		
+//		player = Setup.runIntro();
 //		player.addToInventory(new Potion());
 //		player.addToInventory(new Backpack());
 //		player.addToInventory(new Item("egg", 5));
-		Menu.createMainMenu();
+//		Menu.createMainMenu();
 		
 //		player = Setup.buildCharacter();
 		
